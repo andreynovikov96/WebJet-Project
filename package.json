@@ -1,0 +1,42 @@
+{
+  "name": "webix-jet-app",
+  "version": "1.1.0",
+  "description": "Webix Jet App",
+  "main": "sources/myapp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint sources/",
+    "build": "webpack --env.production true",
+    "start": "webpack-dev-server",
+    "server": "node ./server/index.js"
+  },
+  "keywords": [
+    "webix",
+    "jet"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "css-loader": "^0.28.7",
+    "eslint": "^4.7.2",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "file-loader": "^0.11.2",
+    "less": "^2.7.2",
+    "less-loader": "^4.0.5",
+    "url-loader": "^0.5.9",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.8.2"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "mysql": "^2.15.0",
+    "mysql2": "^1.5.3",
+    "sequelize": "^4.37.6",
+    "webix-jet": "^1.5.0"
+  }
+}
