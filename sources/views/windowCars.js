@@ -16,12 +16,11 @@ export default class WindowView extends JetView {
 						cols:[
 							{
 								view:"button",
-								name:"buttonAddSave",
 								value:"Save",
 								click: () => {
 									if( this.form.validate() ){
 										let values = this.form.getValues();
-										if(values.id && cars.exists(values.id)){
+										if(values.id){
 											cars.updateItem(values.id, values);
 										} else{
 											cars.add(values);

@@ -114,8 +114,8 @@
 }
 .carsTemplate img {
 	float: left;
-	height: 100px;
-	width: 110px;
+	height: 150px;
+	width: 180px;
 	margin-top: 20px;
 	margin-right: 40px;
 }
@@ -130,6 +130,6 @@
 	font-size: 20px;
 }
 .image{
-	height: 100%;
+	height: 80%;
 	width: 100%;
 }

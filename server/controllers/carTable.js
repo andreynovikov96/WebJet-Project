@@ -16,6 +16,10 @@ module.exports = {
 			}).then(() => res.json({}));
 		});
 	},
+	saveData: (req, res) => {
+		db.Cars.create(req.body).then((obj) => 
+			res.json({ id: obj.id }));
+	},
 	removeData: function(req, res){
 		db.Cars.findById(req.params.id).then((Cars) => 
 			Cars.destroy()).then(() => res.json({}));

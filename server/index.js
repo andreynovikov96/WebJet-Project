@@ -9,6 +9,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 let carTable = require("../server/controllers/carTable");
 app.get("/carTable", carTable.getData);
 app.put("/carTable/:id", carTable.updateData);
+app.post("/carTable/", carTable.saveData);
 app.delete("/carTable/:id", carTable.removeData);
 
 let countryTable = require("../server/controllers/countryTable");

@@ -10,17 +10,7 @@ export default class InfoView extends JetView {
 			id:"list:info",
 			select:true,
 			borderless:true,
-			template:"#value#",
-			on:{
-				onAfterSelect: (id) => {
-					this.show(`infocars?id=${id}`);
-					this.$$("info:table").data.sync(cars, () => {
-						this.$$("info:table").filter((obj) => {
-							return obj.CountriesID == id;
-						}, "", true);
-					});
-				}
-			}
+			template:"#value#"
 		};
 
 		let table = {
@@ -36,23 +26,20 @@ export default class InfoView extends JetView {
 				{id:"Model", header:"Model", editor:"text", sort:"string", width:200}
 			]
 		};
-
-		let info = (obj) => {
-			return `<div class='carsTemplate'>
-						<div class='carName'>${obj.Brand} ${obj.Model}</div>
-						<img src="${obj.Photo || "https://icon-icons.com/icons2/906/PNG/512/white-flag_icon-icons.com_69801.png"}">
-						<div class='infoCars'>Production year: ${obj.Year}</div>
-						<div class='infoCars'>Brand country: ${obj.Country}</div>
-						<div class='infoCars'>Circulation of cars: ${obj.Number}</div>
-					</div>`;			
-		};
 		
 		let infoCars =
 			{	
 				view:"template",
 				borderless:true,
 				id:"info:template",
-				template:info
+				template:(obj) => {
+					return `<div class='carsTemplate'>
+								<div class='carName'>${obj.Brand} ${obj.Model}</div>
+								<img src="${obj.Photo || "https://icon-icons.com/icons2/906/PNG/512/white-flag_icon-icons.com_69801.png"}">
+								<div class='infoCars'>Production year: ${obj.Year}</div>
+								<div class='infoCars'>Circulation of cars: ${obj.Number}</div>
+							</div>`;
+				}
 			};
 
 		return {cols:[list, table, infoCars]};
@@ -60,15 +47,22 @@ export default class InfoView extends JetView {
 
 	init(){
 		this.$$("list:info").sync(countries);
+
+		this.$$("list:info").attachEvent("onAfterSelect", (id) => {
+			this.show(`infocars?id=${id}`);
+			this.$$("info:table").data.sync(cars, () => {
+				this.$$("info:table").filter((obj) => {
+					return obj.CountriesID == id;
+				}, "", true);
+			});
+		});
+
 		this.$$("info:table").attachEvent("onAfterSelect", (id) => {
 			this.setParam("cars", id, true);
 			let values = cars.getItem(id);
 			this.$$("info:template").setValues(values);
 		});
-
-		
 	}
-
 	urlChange(){
 		countries.waitData.then(() =>{
 			let id = this.getParam("id");
