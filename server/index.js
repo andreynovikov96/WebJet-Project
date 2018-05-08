@@ -16,4 +16,8 @@ let countryTable = require("../server/controllers/countryTable");
 app.get("/countryTable", countryTable.getData);
 app.put("/countryTable/:id", countryTable.updateData);
 
+let userTable = require("../server/controllers/userTable");
+app.get("/userTable", userTable.getData);
+app.put("/userTable/:id", userTable.updateData);
+
 app.listen(3000);

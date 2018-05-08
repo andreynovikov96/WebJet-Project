@@ -17,6 +17,13 @@ var Country = sequelize.define("country", {
 	value: Sequelize.STRING
 });
 
+let User = sequelize.define("user", {
+	Name: Sequelize.STRING,
+	Email: Sequelize.STRING,
+	Phone: Sequelize.STRING
+});
+
+
 Cars.hasMany(Country);
 
 sequelize.sync({ force: true }).then(() => {
@@ -63,6 +70,70 @@ sequelize.sync({ force: true }).then(() => {
 	Country.create({
 		"value":"Italy"
 	});
+	/* for (var i=0; i<200; i++) {
+		User.create({Name:"Alex Wanny", Email: "alex@gmail.com", Phone: "+375 (29) 555-36-78"
+		});
+	} */
+	User.create({Name:"Alex Wanny", Email: "alex@gmail.com", Phone: "+375 (29) 555-36-78"
+	});
+	User.create({Name:"Doris Wan", Email: "doris@mail.com", Phone: "+375 (29) 123-58-96"
+	});
+	User.create({Name:"Alan Smith", Email: "alan@mail.com", Phone: "+375 (29) 147-85-75"
+	});
+	User.create({Name:"Kevin Sallivan", Email: "kevin@mail.com", Phone: "+375 (29) 964-75-36"
+	});
+	User.create({Name:"Sergey Petrov", Email: "sergeyn@mail.com", Phone: "+375 (29) 457-85-74"
+	});
+	User.create({Name:"Mina Leen", Email: "mina@mail.com", Phone: "+375 (29) 475-96-21"
+	});
+	User.create({Name:"Sam White", Email: "sam@mail.com", Phone: "+375 (29) 365-87-95"
+	});
+	User.create({Name:"Alex Wanny", Email: "alex@gmail.com", Phone: "+375 (29) 555-36-78"
+	});
+	User.create({Name:"Doris Wan", Email: "doris@mail.com", Phone: "+375 (29) 123-58-96"
+	});
+	User.create({Name:"Alan Smith", Email: "alan@mail.com", Phone: "+375 (29) 147-85-75"
+	});
+	User.create({Name:"Kevin Sallivan", Email: "kevin@mail.com", Phone: "+375 (29) 964-75-36"
+	});
+	User.create({Name:"Sergey Petrov", Email: "sergeyn@mail.com", Phone: "+375 (29) 457-85-74"
+	});
+	User.create({Name:"Mina Leen", Email: "mina@mail.com", Phone: "+375 (29) 475-96-21"
+	});
+	User.create({ Name:"Sam White", Email: "sam@mail.com", Phone: "+375 (29) 365-87-95"
+	});
+	User.create({Name:"Alex Wanny", Email: "alex@gmail.com", Phone: "+375 (29) 555-36-78"
+	});
+	User.create({Name:"Doris Wan", Email: "doris@mail.com", Phone: "+375 (29) 123-58-96"
+	});
+	User.create({Name:"Alan Smith", Email: "alan@mail.com", Phone: "+375 (29) 147-85-75"
+	});
+	User.create({Name:"Kevin Sallivan", Email: "kevin@mail.com", Phone: "+375 (29) 964-75-36"
+	});
+	User.create({Name:"Sergey Petrov", Email: "sergeyn@mail.com", Phone: "+375 (29) 457-85-74"
+	});
+	User.create({Name:"Mina Leen", Email: "mina@mail.com", Phone: "+375 (29) 475-96-21"
+	});
+	User.create({Name:"Sam White", Email: "sam@mail.com", Phone: "+375 (29) 365-87-95"
+	});
+	User.create({Name:"Alex Wanny", Email: "alex@gmail.com", Phone: "+375 (29) 555-36-78"
+	});
+	User.create({Name:"Doris Wan", Email: "doris@mail.com", Phone: "+375 (29) 123-58-96"
+	});
+	User.create({Name:"Alan Smith", Email: "alan@mail.com", Phone: "+375 (29) 147-85-75"
+	});
+	User.create({Name:"Kevin Sallivan", Email: "kevin@mail.com", Phone: "+375 (29) 964-75-36"
+	});
+	User.create({Name:"Sergey Petrov", Email: "sergeyn@mail.com", Phone: "+375 (29) 457-85-74"
+	});
+	User.create({Name:"Mina Leen", Email: "mina@mail.com", Phone: "+375 (29) 475-96-21"
+	});
+	User.create({Name:"Sam White", Email: "sam@mail.com", Phone: "+375 (29) 365-87-95"
+	});
+	User.create({Name:"Mina Leen", Email: "mina@mail.com", Phone: "+375 (29) 475-96-21"
+	});
+	User.create({Name:"Sam White", Email: "sam@mail.com", Phone: "+375 (29) 365-87-95"
+	});
 });
 
-module.exports = {Cars, Country};
+module.exports = {Cars, Country, User};
