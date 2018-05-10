@@ -2,7 +2,7 @@ let db = require("../db");
 
 module.exports = {
 	getData: (req, res) => {
-		let limit = (req.query.count || 10)*3;
+		let limit = (req.query.count || 15)*1;
 		let offset = (req.query.start || 0)*1;
 
 		let where = req.query.filter ? {
@@ -21,7 +21,7 @@ module.exports = {
 		});
 
 		Promise.all([count, page]).then(data => res.json({
-			pos:offset, total_count:data[0], data:data[1] 
+			pos:offset, total_count:data[0].count, data:data[1] 
 		}));
 	},
 	updateData: (req, res) => {
