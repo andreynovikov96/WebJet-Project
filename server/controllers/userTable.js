@@ -2,7 +2,7 @@ let db = require("../db");
 
 module.exports = {
 	getData: (req, res) => {
-		let limit = (req.query.count || 15)*1;
+		let limit = (req.query.count || 10)*1;
 		let offset = (req.query.start || 0)*1;
 
 		let where = req.query.filter ? {

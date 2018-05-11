@@ -6,24 +6,27 @@ export default class dataTableBrand extends JetView {
 	config(){
 
 		let checkMenu = {
-			cols:[
-				{view:"checkbox", id:"hideUpload", value:1, label:"Show upload", labelWidth:100,
-					click:() => {
-						this.$$("hideUpload").getValue() ? this.$$("partUpload").show() : this.$$("partUpload").hide();
-					}
-				},
-				{view:"checkbox", id:"hideTable", label:"Show table", value:1, labelWidth:100,
-					click:() => {
-						this.$$("hideTable").getValue() ? this.$$("partTable").show() : this.$$("partTable").hide();
-					}
-				},
-				{view:"checkbox", id:"hideDeleteButton", label:"Show delete car", value:1, labelWidth:120,
-					click:() => {
-						this.$$("hideDeleteButton").getValue() ? this.$$("partMult").show() : this.$$("partMult").hide();
-					}
-				},
-				{}	
-			]
+			id:"checkMenuResponsive", 
+			rows: [{
+				responsive:"checkMenuResponsive",
+				cols:[
+					{view:"checkbox", id:"hideUpload", value:1, label:"Show upload", labelWidth:100, width:150,
+						click:() => {
+							this.$$("hideUpload").getValue() ? this.$$("partUpload").show() : this.$$("partUpload").hide();
+						}
+					},
+					{view:"checkbox", id:"hideTable", label:"Show table", value:1, labelWidth:100, width:150,
+						click:() => {
+							this.$$("hideTable").getValue() ? this.$$("partTable").show() : this.$$("partTable").hide();
+						}
+					},
+					{view:"checkbox", id:"hideDeleteButton", label:"Show delete car", value:1, labelWidth:120, width:150,
+						click:() => {
+							this.$$("hideDeleteButton").getValue() ? this.$$("partMult").show() : this.$$("partMult").hide();
+						}
+					},
+					{}	
+				]}]
 		};
 
 		let filter = (obj)=>{
@@ -136,10 +139,10 @@ export default class dataTableBrand extends JetView {
 			id:"settings:table",
 			select:true,
 			columns:[
-				{id:"Brand", header:"Brand of machine", fillspace:1},
-				{id:"Model", header:"Model", fillspace:1},
-				{id:"Year", header:"Production year", fillspace:1},
-				{id:"CountriesID", header:"Brand country", collection:countries, fillspace:1}
+				{id:"Brand", header:"Brand of machine", fillspace:true, minWidth:100},
+				{id:"Model", header:"Model", width:120},
+				{id:"Year", header:"Production year",  width:120},
+				{id:"CountriesID", header:"Brand country", collection:countries,  width:120}
 			],
 			on:{
 				onAfterSelect: (id) => {

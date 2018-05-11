@@ -8,6 +8,8 @@ export default class InfoView extends JetView {
 		let list = {
 			view:"list",
 			id:"list:info",
+			maxWidth:200,
+			minWidth:100,
 			select:true,
 			borderless:true,
 			template:"#value#"
@@ -17,13 +19,12 @@ export default class InfoView extends JetView {
 			view: "datatable", 
 			id:"info:table",
 			select:true,
-			scrollX: false,
 			borderless:true,
 			editable:true,
 			editaction:"dblclick",
 			columns:[
-				{id:"Brand", header:"Brand of machine", editor:"text", fillspace:true, sort:"string"},
-				{id:"Model", header:"Model", editor:"text", sort:"string", width:200}
+				{id:"Brand", header:"Brand of machine", editor:"text", fillspace:true, sort:"string", width:80},
+				{id:"Model", header:"Model", editor:"text", sort:"string", width:100}
 			]
 		};
 		
@@ -33,12 +34,13 @@ export default class InfoView extends JetView {
 				borderless:true,
 				id:"info:template",
 				template:(obj) => {
-					return `<div class='carsTemplate'>
-								<div class='carName'>${obj.Brand} ${obj.Model}</div>
-								<img src="${obj.Photo || "https://icon-icons.com/icons2/906/PNG/512/white-flag_icon-icons.com_69801.png"}">
-								<div class='infoCars'>Production year: ${obj.Year}</div>
-								<div class='infoCars'>Circulation of cars: ${obj.Number}</div>
-							</div>`;
+					return (obj.Brand || obj.Model || obj.Photo || obj.Year || obj.Number) ? 
+						`<div class='carsTemplate'>
+							<div class='carName'>${obj.Brand} ${obj.Model}</div>
+							<img src="${obj.Photo}">
+							<div class='infoCars'>Production year: ${obj.Year}</div>
+							<div class='infoCars'>Circulation of cars: ${obj.Number}</div>
+						</div>` : "";
 				}
 			};
 

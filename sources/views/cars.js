@@ -10,7 +10,11 @@ export default class dataCars extends JetView{
 			view:"toolbar",
 			cols: [
 				{view:"button", type:"icon", icon:"download", label:"Export to excel", width:150, click:() => webix.toExcel(this.$$("cars:table"))},
-				{view:"button", type:"icon", icon:"refresh", label:"Refresh", width:100, click:() => this.$$("cars:table").refresh()},
+				{view:"button", type:"icon", icon:"refresh", label:"Refresh", width:100, click:() => {
+					this.$$("cars:table").clearAll();
+					this.$$("cars:table").load("http://localhost:3000/carTable");
+					webix.message("refresh");
+				}},
 			]
 		};
 
@@ -20,11 +24,11 @@ export default class dataCars extends JetView{
 			select:true,
 			borderless:true,
 			columns:[
-				{id:"Brand", header:["Brand of machine", {content:"textFilter"}], fillspace:2, sort:"string", },
-				{id:"Model", header:["Model", {content:"textFilter"}], sort:"string", fillspace:2},
-				{id:"Year", header:["Production year", {content:"textFilter"}], sort:"string", fillspace:1},
-				{id:"CountriesID", header:["Brand country", {content:"selectFilter"}], sort:"string", collection:countries, fillspace:1},
-				{id:"Number", header:["Circulation of cars", {content:"textFilter"}], sort:"string", fillspace:2},
+				{id:"Brand", header:["Brand of machine", {content:"textFilter"}], fillspace:true, minWidth:100, sort:"string", },
+				{id:"Model", header:["Model", {content:"textFilter"}], sort:"string", width:200},
+				{id:"Year", header:["Production year", {content:"textFilter"}], sort:"string", width:150},
+				{id:"CountriesID", header:["Brand country", {content:"selectFilter"}], sort:"string", collection:countries, width:100},
+				{id:"Number", header:["Circulation of cars", {content:"textFilter"}], sort:"string", width:200},
 				{template:"{common.trashIcon()}", width:50}
 			],
 			on: {
@@ -38,7 +42,8 @@ export default class dataCars extends JetView{
 						text: "The data will be cleared. Continue?",
 						callback:(result) => {
 							if (result) {
-								cars.remove(id);
+								if(id == 10) webix.message("This car can not be removed");
+								else cars.remove(id);
 							}
 						}
 					});
@@ -56,6 +61,5 @@ export default class dataCars extends JetView{
 		this.on(cars.data, "onStoreUpdated", () =>{
 			this.$$("cars:table").filterByAll();
 		});
-
 	}
 }

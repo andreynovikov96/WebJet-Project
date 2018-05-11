@@ -22,6 +22,16 @@ module.exports = {
 	},
 	removeData: function(req, res){
 		db.Cars.findById(req.params.id).then((Cars) => 
-			Cars.destroy()).then(() => res.json({}));
+			Cars.destroy()).then(() => res.json("file remove"));
+		/* 	Cars.destroy()).then(data => {
+				if (data) {
+					console.log("ok");
+					res.json("file remove");
+				}
+				else {
+					console.log("error");
+					res.json("file not remove");
+				}
+			}); */
 	}
 };
