@@ -42,12 +42,21 @@ export default class dataCars extends JetView{
 						text: "The data will be cleared. Continue?",
 						callback:(result) => {
 							if (result) {
-								if(id == 10) webix.message("This car can not be removed");
-								else cars.remove(id);
+								webix.ajax().del("http://localhost:3000/carTable/" + id).then((data) => {
+									let res = JSON.parse(data.text());
+									if (res.result) {
+										cars.remove(id);
+										/* this.$$("cars:table").clearAll();
+										this.$$("cars:table").load("http://localhost:3000/carTable"); */
+										webix.message("file delete");
+									}
+									else {
+										webix.message("file not delete");
+									}
+								});
 							}
 						}
 					});
-					return false;
 				}
 			}
 		}; 

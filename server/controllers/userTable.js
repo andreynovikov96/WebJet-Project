@@ -20,9 +20,13 @@ module.exports = {
 			where, limit, offset, order
 		});
 
-		Promise.all([count, page]).then(data => res.json({
-			pos:offset, total_count:data[0].count, data:data[1] 
-		}));
+		Promise.all([count, page]).then((data, err) => 
+		{
+			if (!err)
+				res.json({pos:offset, total_count:data[0].count, data:data[1]});
+			else
+				console.log("Error: Cannot get file's data from database.");
+		});
 	},
 	updateData: (req, res) => {
 		db.User.findById(req.body.id).then((User) => {
@@ -30,7 +34,16 @@ module.exports = {
 				Name: req.body.Name,
 				Email: req.body.Email,
 				Phone: req.body.Phone
-			}).then(() => res.json({}));
+			}).then(result => {
+				if (result) {
+					console.log("ok");
+					res.json({result:true, msg:"file update"});
+				}
+				else {
+					console.log("error");
+					res.json({result:false, msg:"file not update"});
+				}
+			});
 		});
 	}
 };
